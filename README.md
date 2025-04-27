@@ -1,7 +1,7 @@
 # Immersed Dual-Screen Setup for Ubuntu (Meta Quest 3)
 
 This script helps you **create a virtual secondary display** on **Ubuntu 24.04** and **24.10** for use with **Meta Quest 3** and the **Immersed** app.  
-It ensures smooth dual-screen experience in VR, automatically adjusting settings based on whether you're using **X11** or **Wayland**.
+It ensures a smooth dual-screen experience in VR, automatically adjusting settings based on whether you're using **X11** or **Wayland**.
 
 ---
 
@@ -30,32 +30,19 @@ It ensures smooth dual-screen experience in VR, automatically adjusting settings
 
 ## Setup
 
-1. **Clone the repository** or download `vr.sh`.
-2. Make sure `vr.sh` is executable:
+1. **Clone the repository** or download the provided files:  
+   - `vr.sh` (main script)
+   - `set3200.sh` (helper script for creating the virtual display)
+
+2. Make the scripts executable:
 
    ```bash
-   chmod +x vr.sh
+   chmod +x vr.sh set3200.sh
    ```
 
-3. Place the [Immersed-x86_64.AppImage](https://immersed.com/download/) in your `~/Downloads/` directory (or adjust the path in the script).
-4. (X11 only) Create the helper script `set3200.sh` to add a 3200x1800 mode:
+3. Place the [Immersed-x86_64.AppImage](https://immersed.com/download/) in your `~/Downloads/` directory (or adjust the path in `vr.sh`).
 
-   Example `set3200.sh`:
-
-   ```bash
-   #!/bin/bash
-   xrandr --newmode "3200x1800_60.00"  379.00  3200 3448 3800 4400  1800 1803 1807 1865 -hsync +vsync
-   xrandr --addmode VIRTUAL1 "3200x1800_60.00"
-   xrandr --output VIRTUAL1 --mode "3200x1800_60.00" --right-of eDP1
-   ```
-
-   Make it executable:
-
-   ```bash
-   chmod +x set3200.sh
-   ```
-
-5. Run the script:
+4. Run the script:
 
    ```bash
    ./vr.sh
@@ -68,7 +55,7 @@ It ensures smooth dual-screen experience in VR, automatically adjusting settings
 - If you are on X11, your laptop display may briefly turn off during setup/reset.
 - On Wayland, the script temporarily disables the **Compiz Windows Effect** extension to prevent visual issues when launching Immersed.
 - You can modify the AppImage path if you store it elsewhere.
-- If you modify screen resolutions or display settings manually, you might need to adjust the commands in `set3200.sh` or `vr.sh`.
+- If you manually change screen resolutions or display settings, you might need to adjust commands in `set3200.sh` or `vr.sh`.
 
 ---
 
